@@ -1,6 +1,6 @@
 # Release-notes-reminder-bot action
 
-Bot to remind that release notes are needed when a CHANGELOG label is added to a PR  One of 3 labels must be applied to the PR in order to trigger a reminder.
+Bot to remind that release notes are needed when a CHANGELOG label is added to a PR. One of 3 labels must be applied to the PR in order to trigger a reminder.
 
 - changelog - added
 - changelog - fixed
@@ -23,7 +23,14 @@ jobs:
       - name: Prompt to add release notes
         uses: ponylang/release-notes-reminder-bot-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          API_CREDENTIALS: "${{ secrets.GITHUB_ACTOR }}:${{ secrets.GITHUB_TOKEN }}"
 ```
 
-Note, you do not need to create `GITHUB_TOKEN`. It is already provided by GitHub. You merely need to make it available to the Changelog-bot action.
+API_CREDENTIALS can be of two forms. If you would like to post the release
+notes reminder comment as a specific user, then create a personal access token
+as that user and set API_CREDENTIALS to the token value.
+
+If you are ok with the comment being posted as "GitHub Bot" then you can set
+API_CREDENTIALS to `"${{ secrets.GITHUB_ACTOR }}:${{ secrets.GITHUB_TOKEN }}"`.
+You do not need to supply GITHUB_ACTOR nor GITHUB_TOKEN as they are supplied by
+the GitHub actions environment already.
