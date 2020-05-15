@@ -1,6 +1,6 @@
 # Release-notes-reminder-bot action
 
-Bot to remind that release notes are needed when a CHANGELOG label is added to a PR  One of 3 labels must be applied to the PR in order to trigger a reminder.
+Bot to remind that release notes are needed when a CHANGELOG label is added to a PR. One of 3 labels must be applied to the PR in order to trigger a reminder.
 
 - changelog - added
 - changelog - fixed
