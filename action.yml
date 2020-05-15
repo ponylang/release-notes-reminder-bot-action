@@ -1,0 +1,5 @@
+name: 'Release Notes Reminder Bot'
+description: 'Prompts to add release notes if certain labels are set'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
