@@ -25,7 +25,7 @@ then
   exit 0
 fi
 
-PR_NUMBER=$(jq -r '.pull_request.id' ${GITHUB_EVENT_PATH})
+COMMENTS_LINK=$(jq -r '.pull_request._links.comments' ${GITHUB_EVENT_PATH})
 OPENED_BY=$(jq -r '.pull_request.user.login' ${GITHUB_EVENT_PATH})
 
 # Prepare comment
@@ -48,10 +48,11 @@ json=$(jq -n \
 "${jsontemplate}")
 
 # Add comment
+echo -e "counter: 2"
 echo -e "\e[34mAdding release note reminder...\e[0m"
-echo -e "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments"
+echo -e "${COMMENTS_LINK}"
 
-result=$(curl -s -X POST "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" \
+result=$(curl -s -X POST "${COMMENTS_LINK}" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" \
   --data "${json}")
