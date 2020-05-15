@@ -25,7 +25,7 @@ then
   exit 0
 fi
 
-COMMENTS_LINK=$(jq -r '.pull_request._links.comments' ${GITHUB_EVENT_PATH})
+COMMENTS_LINK=$(jq -r '.pull_request._links.comments.href' ${GITHUB_EVENT_PATH})
 OPENED_BY=$(jq -r '.pull_request.user.login' ${GITHUB_EVENT_PATH})
 
 # Prepare comment
