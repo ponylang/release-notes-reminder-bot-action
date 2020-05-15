@@ -21,7 +21,7 @@ CHANGELOG_LABEL=$(
 
 if [ -z ${CHANGELOG_LABEL} ];
 then
-  echo -e "\e[34mLabel isn't a changelog label. Exiting.\e[0m"
+  echo -e "\e[34m${CHANGELOG_LABEL} isn't a changelog label. Exiting.\e[0m"
   exit 0
 fi
 
