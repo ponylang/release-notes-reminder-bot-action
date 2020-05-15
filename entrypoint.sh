@@ -54,4 +54,12 @@ result=$(curl -s -X POST "https://api.github.com/repos/${GITHUB_REPOSITORY}/issu
   -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" \
   --data "${json}")
 
-  echo $(result)
+rslt_scan=$(echo "${result}" | jq -r '.id')
+if [ "$rslt_scan" != null ]
+then
+  echo -e "\e[34mComment posted\e[0m"
+else
+  echo "\e[31mUnable to post comment, here's the curl output...\e[0m"
+  echo "${result}"
+  exit 1
+fi
