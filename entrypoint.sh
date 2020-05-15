@@ -52,3 +52,5 @@ result=$(curl -s -X POST "https://api.github.com/repos/${GITHUB_REPOSITORY}/issu
   -H "Content-Type: application/x-www-form-urlencoded" \
   -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" \
   --data "${json}")
+
+  echo $(result)
