@@ -2,8 +2,8 @@
 
 set -e
 
-if [[ -z "${GITHUB_TOKEN}" ]]; then
-  echo -e "\e[31mGITHUB_TOKEN needs to be set in env. Exiting."
+if [[ -z "${API_CREDENTIALS}" ]]; then
+  echo -e "\e[31mAPI_CREDENTIALS needs to be set in env. Exiting.\e[0m"
   exit 1
 fi
 
@@ -48,13 +48,11 @@ json=$(jq -n \
 "${jsontemplate}")
 
 # Add comment
-echo -e "counter: 3"
 echo -e "\e[34mAdding release note reminder...\e[0m"
-echo -e "${COMMENTS_LINK}"
 
 result=$(curl -s -X POST "${COMMENTS_LINK}" \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" \
+  -u "${API_CREDENTIALS}" \
   --data "${json}")
 
 rslt_scan=$(echo "${result}" | jq -r '.id')
