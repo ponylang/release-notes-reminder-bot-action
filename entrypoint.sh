@@ -48,7 +48,7 @@ json=$(jq -n \
 "${jsontemplate}")
 
 # Add comment
-echo -e "counter: 2"
+echo -e "counter: 3"
 echo -e "\e[34mAdding release note reminder...\e[0m"
 echo -e "${COMMENTS_LINK}"
 
