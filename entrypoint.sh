@@ -50,5 +50,5 @@ json=$(jq -n \
 echo -e "\e[34mAdding release note reminder...\e[0m"
 result=$(curl -s -X POST "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}" \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -u "${GITHUB_TOKEN}" \
+  -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" \
   --data "${json}")
