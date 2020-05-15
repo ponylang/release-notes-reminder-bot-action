@@ -49,7 +49,7 @@ json=$(jq -n \
 
 # Add comment
 echo -e "\e[34mAdding release note reminder...\e[0m"
-echo -e "\e[34mPosting to https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments\e[0m"
+echo -e "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments"
 
 result=$(curl -s -X POST "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" \
   -H "Content-Type: application/x-www-form-urlencoded" \
