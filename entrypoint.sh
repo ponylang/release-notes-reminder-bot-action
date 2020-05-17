@@ -13,20 +13,20 @@ fi
 #
 
 CHANGELOG_LABEL=$(
-  jq -r '.label.name' ${GITHUB_EVENT_PATH} |
+  jq -r '.label.name' "${GITHUB_EVENT_PATH}" |
   grep 'changelog - ' |
   grep -o -E 'added|changed|fixed' ||
   true
 )
 
-if [ -z ${CHANGELOG_LABEL} ];
+if [ -z "${CHANGELOG_LABEL}" ];
 then
   echo -e "\e[34m${CHANGELOG_LABEL} isn't a changelog label. Exiting.\e[0m"
   exit 0
 fi
 
-COMMENTS_LINK=$(jq -r '.pull_request._links.comments.href' ${GITHUB_EVENT_PATH})
-OPENED_BY=$(jq -r '.pull_request.user.login' ${GITHUB_EVENT_PATH})
+COMMENTS_LINK=$(jq -r '.pull_request._links.comments.href' "${GITHUB_EVENT_PATH}")
+OPENED_BY=$(jq -r '.pull_request.user.login' "${GITHUB_EVENT_PATH}")
 
 # Prepare comment
 echo -e "\e[34mPreparing release notes reminder comment...\e[0m"
