@@ -21,7 +21,7 @@ jobs:
     name: Prompt to add release notes
     steps:
       - name: Prompt to add release notes
-        uses: ponylang/release-notes-reminder-bot-action@0.0.1
+        uses: ponylang/release-notes-reminder-bot-action@0.0.2
         env:
           API_CREDENTIALS: "${{ secrets.GITHUB_ACTOR }}:${{ secrets.GITHUB_TOKEN }}"
 ```
