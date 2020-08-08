@@ -35,7 +35,19 @@ body="@${OPENED_BY},
 It looks like this Pull Request requires release notes to be included.
 If you haven't added them already, please do.
 
-Thanks!
+Release notes are added by creating a uniquely named file in the \`.release-notes\` directory.
+
+The basic format of the release notes (using markdown) should be:
+
+\`\`\`
+## Title
+
+End user description of changes, why it's important, problems it solves etc.
+
+If a breaking change, make sure to include 1 or more examples what code would look like prior to this change and how to update it to work after this change.
+\`\`\`
+
+Thanks.
 "
 
 jsontemplate="
