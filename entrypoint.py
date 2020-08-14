@@ -31,12 +31,32 @@ if not found_changelog_label:
   print(INFO + event_label + " isn't a changelog label. Exiting." + ENDC)
   sys.exit(0)
 
+# get PR which is an "issue" for us because the GitHub API is weird
+github = Github(os.environ['API_CREDENTIALS'])
+repo = github.get_repo(repo_name)
+issue = repo.get_issue(pr_number)
+
+sentinel = "<!-- release-note-reminder-bot -->"
+
+# check the existing comments for the sentinel.
+found_sentinel = False
+comments = issue.get_comments()
+
+for c in comments:
+  if sentinel in c.body:
+    found_sentinel = True
+    break
+
+if found_sentinel:
+  print(INFO + "Found existing comment sentinel. Exiting." + ENDC)
+  sys.exit(0)
+
+# ok, we should be posting. let's create a reminder and post it.
 print(INFO + "Preparing release notes reminder comment." + ENDC)
-comment_template = """Hi @{user},
+comment_template = """{sentinel}
+Hi @{user},
 
-It looks like this Pull Request requires release notes to be included.
-
-If you haven't added them already, please do.
+The {label} label was added to this pull request; all PRs with a changelog label need to have release notes included as part of the PR. If you haven't added release notes already, please do.
 
 Release notes are added by creating a uniquely named file in the `.release-notes` directory. We suggest you call the file `{pr_number}.md` to match the number of this pull request.
 
@@ -56,12 +76,8 @@ and how to update it to work after this change.
 Thanks.
 """
 
-comment = comment_template.format(user=pr_opened_by, pr_number=str(pr_number))
-
-# get PR which is an "issue" for us because the GitHub API is weird
-github = Github(os.environ['API_CREDENTIALS'])
-repo = github.get_repo(repo_name)
-issue = repo.get_issue(pr_number)
+comment = comment_template.format(user=pr_opened_by, label=event_label,
+  pr_number=str(pr_number), sentinel=sentinel)
 
 print(INFO + "Posting comment." + ENDC)
 issue.create_comment(comment)
