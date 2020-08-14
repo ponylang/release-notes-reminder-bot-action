@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+- Don't post a reminder more than once ([PR #15](https://github.com/ponylang/release-notes-reminder-bot-action/pull/15))
 
 ### Changed
 
