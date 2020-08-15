@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Changed
 
+- Don't post reminder if PR already contains release notes ([PR #16](https://github.com/ponylang/release-notes-reminder-bot-action/pull/16))
 
 ## [0.0.2] - 2020-08-08
 
