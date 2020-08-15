@@ -51,6 +51,22 @@ if found_sentinel:
   print(INFO + "Found existing comment sentinel. Exiting." + ENDC)
   sys.exit(0)
 
+# don't post if there is already release notes included with the PR
+found_release_notes_files = False
+for f in repo.get_pull(pr_number).get_files():
+    if f.status != "added":
+      continue
+    print(INFO + "Found file " + f.filename + ENDC)
+    if f.filename.startswith('.release-notes/'):
+      if not f.filename.endswith('next-release.md'):
+        found_release_notes_files = True
+        break
+
+# if at least one release notes exists, exit
+if found_release_notes_files:
+  print(NOTICE + "Release notes file(s) found in commits. Exiting." + ENDC)
+  sys.exit(0)
+
 # ok, we should be posting. let's create a reminder and post it.
 print(INFO + "Preparing release notes reminder comment." + ENDC)
 comment_template = """{sentinel}
