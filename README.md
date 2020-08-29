@@ -12,7 +12,7 @@ Bot to remind that release notes are needed when a CHANGELOG label is added to a
 name: Release Notes Reminder Bot
 
 on:
-  pull_request:
+  pull_request_target:
     types: [labeled]
 
 jobs:
