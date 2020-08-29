@@ -21,7 +21,7 @@ if 'API_CREDENTIALS' not in os.environ:
 # get information we need from the event
 event_data = json.load(open(os.environ['GITHUB_EVENT_PATH'], 'r'))
 event_label = event_data['label']['name']
-repo_name = event_data['repository']['full_name']
+repo_name = event_data['pull_request']['base']['repo']['full_name']
 pr_number = event_data['pull_request']['number']
 pr_opened_by = event_data['pull_request']['user']['login']
 
@@ -37,7 +37,10 @@ if not found_changelog_label:
 
 # get PR which is an "issue" for us because the GitHub API is weird
 github = Github(os.environ['API_CREDENTIALS'])
+print(INFO + "repo is " + repo_name + ENDC)
+print("OLd was... " + event_data['repository']['full_name'])
 repo = github.get_repo(repo_name)
+print("NEXT...")
 issue = repo.get_issue(pr_number)
 
 sentinel = "<!-- release-note-reminder-bot -->"
