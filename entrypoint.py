@@ -19,7 +19,8 @@ if 'API_CREDENTIALS' not in os.environ:
     sys.exit(1)
 
 # get information we need from the event
-event_data = json.load(open(os.environ['GITHUB_EVENT_PATH'], 'r'))
+with open(os.environ['GITHUB_EVENT_PATH'], 'r', encoding='utf-8') as f:
+    event_data = json.load(f)
 event_label = event_data['label']['name']
 repo_name = event_data['repository']['full_name']
 pr_number = event_data['pull_request']['number']
