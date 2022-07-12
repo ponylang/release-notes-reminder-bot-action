@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Changed
 
+- Updated base image ([PR #24](https://github.com/ponylang/release-notes-reminder-bot-action/pull/24))
 
 ## [0.1.0] - 2020-08-15
 
