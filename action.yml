@@ -1,5 +1,5 @@
 description: Prompts to add release notes if certain labels are set
 name: Release Notes Reminder Bot
 runs:
-  image: docker://ponylang/release-notes-reminder-bot-action:0.1.1
+  image: Dockerfile
   using: docker
