@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Changed
 
+- Update base image to Alpine 3.18 ([PR #36](https://github.com/ponylang/release-notes-reminder-bot-action/pull/36))
 
 ## [0.1.1] - 2022-07-12
 
