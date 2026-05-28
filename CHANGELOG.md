@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Fixed
 
+- Fix intermittent failure to post release notes reminder ([PR #57](https://github.com/ponylang/release-notes-reminder-bot-action/pull/57))
 
 ### Added
 
